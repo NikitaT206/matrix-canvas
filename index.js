@@ -10,38 +10,38 @@ const arrayOfSymbols = ["!", "#", '$', '%', '&', '(', ')', '*', ',', '-', '.', '
 let font = 12
 const columns = width / font
 const arr = [...new Array(Math.floor(columns))].fill(1)
+const rand = Math.floor(Math.random() * arr.length)
 
 function draw() {
-  ctx.fillStyle = `rgba(0, 0, 0, 0.07)`
-  ctx.shadowBlur=0;
+  ctx.shadowBlur=0
+  ctx.shadowColor="black"
 
+  ctx.fillStyle = `rgba(0, 0, 0, 0.09)`
   ctx.fillRect(0, 0, width, height)
   ctx.fillStyle = "#0f0"
+
   ctx.font = '30px Matrix'
   ctx.shadowColor="green"
-  ctx.shadowBlur=20;
-
+  ctx.shadowColor="#1bbe12"
+  ctx.shadowBlur=10
 
   for (let i = 0; i < arr.length; i++) {
+
     let txt = arrayOfSymbols[Math.floor(Math.random() * arrayOfSymbols.length)]
     ctx.fillText(txt, i * font, arr[i] * font)
-    // arr[Math.floor((Math.random() * arr.length))]++
+
     arr[i]++
 
-    if (arr[i] * font > height && Math.random() > 0.975) {
-      // arr[Math.floor(Math.random() * arr.length)] = 0
-        arr[i] = 0
-
-      // arr[i]++
-      // let rand = Math.floor(Math.random() * 20)
+    if (arr[i] * font > height && Math.random() > 0.98) {
+        arr[i] = 0 
     } 
   }
-  requestAnimationFrame(draw)
+  requestAnimationFrame(() => {
+    setTimeout(draw, 35)
+  })
 }
 
-requestAnimationFrame(draw)
-
-// setInterval(draw, 100)
+draw()
 
 window.addEventListener("resize", () => location.reload())
 
