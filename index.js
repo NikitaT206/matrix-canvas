@@ -29,15 +29,16 @@ function draw() {
 
     let txt = arrayOfSymbols[Math.floor(Math.random() * arrayOfSymbols.length)]
     ctx.fillText(txt, i * font, arr[i] * font)
-
-    arr[i]++
-
+    if (Math.random() > 0.2) {
+      arr[i]++
+    } 
+    
     if (arr[i] * font > height && Math.random() > 0.98) {
         arr[i] = 0 
     } 
   }
   requestAnimationFrame(() => {
-    setTimeout(draw, 35)
+    setTimeout(draw, 30)
   })
 }
 
